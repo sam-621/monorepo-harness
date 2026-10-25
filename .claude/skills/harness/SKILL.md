@@ -18,11 +18,15 @@ El repo `monorepo-harness` es un template: se copia a una carpeta nueva y `/harn
 ## Modo
 
 1. Si existe `.claude/harness.json`, el proyecto ya está armado y el modo es **add-app**. Si el argumento pide `init`, avisar que ya está armado y parar.
-2. Si no existe, el modo es **init**. La copia del template trae archivos que son solo del template y se reemplazan sin preguntar: `README.md` (empieza con `# monorepo-harness`) y `.vscode/settings.json`. Si además hay código, un `CLAUDE.md` u otros archivos, avisar qué hay y no sobrescribir nada sin confirmar archivo por archivo.
-3. Antes de init, dos chequeos:
-   - Si la carpeta se llama `monorepo-harness`, probablemente es el template original y no una copia. Avisar y parar salvo que el usuario confirme que sí quiere convertirla.
-   - Si hay `.git` con el historial del template (commits o remote de `monorepo-harness`), avisar que el proyecto heredaría ese historial y sugerir borrarlo y hacer `git init`. No borrarlo sin confirmar.
+2. Si no existe, el modo es **init**. La copia del template trae archivos que son solo del template y se reemplazan sin preguntar ni avisar: `README.md` (empieza con `# monorepo-harness`) y `.vscode/settings.json`. Si además hay código, un `CLAUDE.md` u otros archivos, avisar qué hay y no sobrescribir nada sin confirmar archivo por archivo.
+3. Si la carpeta se llama `monorepo-harness`, es el template original y no una copia: avisar y parar salvo que el usuario confirme que sí quiere convertirla.
 4. `add-app <nombre>`: saltar al apartado [Agregar una app](#agregar-una-app).
+
+No revisar ni comentar git (remotes, historial, commits): no es parte del harness. Sin preámbulo de chequeos: si nada de lo anterior aplica, empezar directo con la entrevista.
+
+## Preguntas
+
+Toda pregunta al usuario va con `AskUserQuestion`, con opciones concretas y la recomendada primero. Nunca terminar un mensaje con una pregunta en texto ("¿agregas algo?", "dime qué motores…"). La única excepción es el nombre y la descripción del proyecto, si no vinieron en el argumento.
 
 ## Init
 

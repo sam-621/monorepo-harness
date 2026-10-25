@@ -1,6 +1,6 @@
 # Entrevista
 
-Pocas rondas, con `AskUserQuestion` donde hay opciones cerradas (máximo 4 preguntas por llamada) y texto libre donde no. La primera opción de cada pregunta es la recomendada. Lo que el usuario ya dijo no se pregunta.
+Pocas rondas. Cada ronda es una llamada a `AskUserQuestion` (máximo 4 preguntas por llamada), nunca preguntas escritas en el mensaje. Si una pregunta parece abierta, convertirla en opciones concretas: el usuario puede escribir lo suyo en "Other". La primera opción de cada pregunta es la recomendada. Lo que el usuario ya dijo no se pregunta.
 
 ## Ronda 1 — Proyecto y apps
 
@@ -20,7 +20,7 @@ Y en el mismo turno, una sola llamada a `AskUserQuestion`. Nunca cerrar la ronda
 |----------|----------|-------|
 | ¿Las apps propuestas te sirven? | **Sí, así** · Cambiar nombres · Quitar alguna | single |
 | ¿Agregamos alguna pieza extra? | **Ninguna** · 3 piezas que tengan sentido para este proyecto (p. ej. paquete de tipos compartidos, landing, e2e, migraciones de la DB, admin, infra) | `multiSelect`; cada opción dice qué sería y dónde vive (`apps/` o `packages/`) |
-| Una duda de arquitectura que cambie la lista de apps, si la descripción la deja abierta (p. ej. "¿Corre todo en el navegador o con backend?") | La recomendada primero | solo si aplica; máximo 2 |
+| Una duda de producto o arquitectura que cambie lo que hace cada app, si la descripción la deja abierta (p. ej. "¿Qué motores soporta al inicio?" → Postgres · MySQL · SQLite) | La recomendada primero | solo si aplica; máximo 2; `multiSelect` si se pueden elegir varias |
 
 Con las respuestas:
 
