@@ -2,18 +2,32 @@
 
 Pocas rondas, con `AskUserQuestion` donde hay opciones cerradas (máximo 4 preguntas por llamada) y texto libre donde no. La primera opción de cada pregunta es la recomendada. Lo que el usuario ya dijo no se pregunta.
 
-## Ronda 1 — Proyecto y apps (texto libre)
+## Ronda 1 — Proyecto y apps
 
-Si no vino en el argumento, preguntar el nombre del proyecto y una línea de qué es.
+Si no vino en el argumento, preguntar el nombre del proyecto y una línea de qué es (texto libre: es lo único de esta ronda que no tiene opciones).
 
-Con eso, proponer las apps en una lista y pedir que agregue, quite o renombre:
+Con eso, mostrar la propuesta de apps como lista, cada una con su línea de qué hace en este proyecto:
 
 ```
 Propongo:
-- api — backend (Node + TypeScript)
-- web — frontend (React + Vite)
-¿Agregas algo (admin, landing, un paquete de tipos compartidos, la DB aparte, e2e, infra...) o cambio nombres?
+- api — backend (Node + TypeScript): ...
+- web — frontend (React + Vite): ...
 ```
+
+Y en el mismo turno, una sola llamada a `AskUserQuestion`. Nunca cerrar la ronda con una pregunta abierta en texto: el usuario tiene que ver claro qué contestar.
+
+| Pregunta | Opciones | Notas |
+|----------|----------|-------|
+| ¿Las apps propuestas te sirven? | **Sí, así** · Cambiar nombres · Quitar alguna | single |
+| ¿Agregamos alguna pieza extra? | **Ninguna** · 3 piezas que tengan sentido para este proyecto (p. ej. paquete de tipos compartidos, landing, e2e, migraciones de la DB, admin, infra) | `multiSelect`; cada opción dice qué sería y dónde vive (`apps/` o `packages/`) |
+| Una duda de arquitectura que cambie la lista de apps, si la descripción la deja abierta (p. ej. "¿Corre todo en el navegador o con backend?") | La recomendada primero | solo si aplica; máximo 2 |
+
+Con las respuestas:
+
+- **Cambiar nombres** o **Quitar alguna**: otra `AskUserQuestion` concreta (qué app quitar, con una opción por app; o qué nombre, con 2-3 nombres sugeridos por app). No pedir "dime qué cambio".
+- Si eligió **Other** en cualquier pregunta, tomar su texto y seguir; si no queda claro, repreguntar solo eso.
+- Si agregó un `site`, preguntar su stack en la misma ronda: **Astro** · otro (Other).
+- Si la duda de arquitectura cambia la propuesta, volver a mostrar la lista y repetir solo la primera pregunta.
 
 Cada pieza tiene `name` (kebab-case, es el scope del commit), `kind`, `location` (`apps` o `packages`) y una línea de qué es. Lo que se comparte entre apps (tipos, configs, utilidades) va en `packages/`; lo demás en `apps/`.
 
@@ -24,7 +38,7 @@ Cada pieza tiene `name` (kebab-case, es el scope del commit), `kind`, `location`
 | `site` | landing, docs, blog (Astro, estático) | solo `CLAUDE.md` |
 | `custom` | cualquier otra pieza: paquete de tipos, migraciones y config de la DB, proyecto de e2e, infra, worker | sí, escritos a partir de su descripción |
 
-Para `site`, preguntar el stack en la misma ronda (texto libre) y nada más. Si lo que describe el usuario no encaja claro en backend o frontend, es `custom`: no forzarlo.
+Si lo que describe el usuario no encaja claro en backend o frontend, es `custom`: no forzarlo.
 
 ## Ronda 2 — Global
 
