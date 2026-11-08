@@ -1,3 +1,9 @@
 {
-  "cSpell.ignorePaths": ["features/**", ".claude/**", "**/CLAUDE.md", "**/docs/**"]
+  "cSpell.ignorePaths": [
+    "features/**",
+    ".claude/**",
+    "**/CLAUDE.md",
+    "**/docs/**",
+    "**/README.md"
+  ]
 }
