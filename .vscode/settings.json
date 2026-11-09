@@ -4,6 +4,7 @@
     ".claude/**",
     "**/CLAUDE.md",
     "**/docs/**",
-    "**/README.md"
+    "**/README.md",
+    "**/log.md"
   ]
 }

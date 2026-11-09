@@ -5,7 +5,7 @@ Monorepo template para trabajar con Claude Code.
 ## Uso
 
 1. En GitHub, **Use this template → Create a new repository** con el nombre del proyecto.
-2. En el `CLAUDE.md` raíz, cambiar `<proyecto>` y la línea de descripción.
+2. En el `CLAUDE.md` raíz y en `log.md`, cambiar `<proyecto>`; en el `CLAUDE.md`, también la línea de descripción.
 3. Borrar las apps que el proyecto no usa: su carpeta en `apps/`, sus agentes en `.claude/agents/`, su fila en la tabla del `CLAUDE.md` raíz y su scope en `.claude/skills/commit/SKILL.md`.
 4. Instalar cada app dentro de su carpeta siguiendo su `docs/` (stack en `docs/architecture.md`, scripts en `docs/commands.md`). Lo mismo con `e2e/` cuando haya una UI que probar.
 
@@ -14,6 +14,7 @@ Monorepo template para trabajar con Claude Code.
 ```
 .
 ├── CLAUDE.md                 reglas del repo, tabla de apps, flujo de features y formato de reportes
+├── log.md                    bitácora general del proyecto: una línea por cambio, por día y por autor
 ├── .claude/
 │   ├── agents/               <app>-implementer y <app>-reviewer por app, e2e-implementer y e2e-qa
 │   └── skills/               /session-start, /commit y /qa

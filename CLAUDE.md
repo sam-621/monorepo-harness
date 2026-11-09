@@ -34,7 +34,22 @@ El trabajo sobre una feature empieza con `/session-start <slug>`. Sin él, no le
 
 - Al terminar cada tarea, agregarla a la entrada de hoy del autor en `log.md` (`## YYYY-MM-DD — <autor>`, autor = parte antes de la `@` de `git config user.email`). Si la entrada no existe, crearla al final.
 - Al terminar un paso del plan de trabajo recomendado, marcarlo `[x]` en `spec/product.md`.
+- Al crear la feature, terminar un paso del plan o cerrarla, agregar una línea `[slug]` al log del proyecto. El detalle se queda en el `log.md` de la feature.
 - Si el usuario pide en la sesión algo que cambia una regla, decisión, parte técnica o de UI, o que contradice el `spec/` (por ejemplo, algo que estaba fuera de alcance), lo que pide manda: actualizar `product.md`, `technical.md` y `ui.md` sin pedir confirmación. Los cambios a `docs/` de las apps sí siguen necesitando confirmación.
+- Conflictos de git en `log.md`: aceptar ambas versiones.
+
+## Log del proyecto
+
+`log.md` en la raíz es la bitácora general del proyecto: a grandes rasgos qué se ha hecho. El detalle de una feature vive en su `log.md`.
+
+- Una entrada por día y por autor (`## YYYY-MM-DD — <autor>`, igual que en features). Si no existe, crearla al final.
+- Una línea por cambio, en lenguaje de changelog: qué cambió, no cómo quedó el código. `(app)` al inicio.
+- `[slug]` marca que la línea resume trabajo de una feature; sin `[slug]` es un cambio suelto y esa línea es todo su registro.
+- Se escribe sin comando, en cualquier conversación:
+  - Sin sesión de feature: cada cambio aplicado en código o decisión que alguien que no estuvo en la conversación necesitaría conocer.
+  - Con sesión de feature: solo lo que pide la sección Features.
+  - No ameritan línea: formato, renombres, tests sueltos, cambios revertidos en la misma conversación.
+- Si un cambio suelto necesita más de 2 o 3 líneas para entenderse, avisar que quizá es una feature. No crearla sin que el usuario lo pida.
 - Conflictos de git en `log.md`: aceptar ambas versiones.
 
 ## Docs de las apps
